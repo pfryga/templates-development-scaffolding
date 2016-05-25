@@ -1,4 +1,4 @@
-# Simple HTML project scaffold
+# Simple HTML project scaffolding
 
 ### Version
 1.0.0

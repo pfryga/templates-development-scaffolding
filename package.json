@@ -1,0 +1,30 @@
+{
+  "name": "mobilla",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "build": "gulp build",
+    "watch": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/ketch91/mobilla.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/ketch91/mobilla#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.8",
+    "gulp-less": "^3.1.0",
+    "gulp-load-plugins": "^1.2.4",
+    "gulp-replace": "^0.5.4",
+    "gulp-sequence": "^0.4.5",
+    "gulp-watch": "^4.3.6",
+    "koa": "^1.2.0",
+    "koa-static": "^2.0.0"
+  }
+}

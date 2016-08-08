@@ -3,8 +3,13 @@ let fs = require('fs');
 let cleanCSS = require('gulp-clean-css');
 let $ = require('gulp-load-plugins')();
 
+gulp.task('copyStatics', function () {
+    return gulp.src(['statics/*/**'])
+        .pipe(gulp.dest('disc'));
+});
+
 gulp.task('buildResources', function () {
-    return gulp.src('statics/*/**')
+    return gulp.src(['statics/*/**', '!statics/*/**.png'])
         .pipe($.replace(/\/\* replace (.+) \*\//g, function (s, filename) {
             let fileContent = fs.readFileSync(filename, 'utf8');
             return fileContent;
@@ -12,9 +17,18 @@ gulp.task('buildResources', function () {
         .pipe(gulp.dest('disc'));
 });
 
+gulp.task('moveImages', function () {
+    return gulp.src('statics/images/**/*')
+        .pipe(gulp.dest('disc/images'));
+});
+
 gulp.task('less', function () {
     return gulp.src('statics/styles/less/index.less')
         .pipe($.less())
+        .pipe($.autoprefixer({
+            browsers: ['last 5 versions'],
+            cascade: false
+        }))
         .pipe(cleanCSS({
             compatibility: 'ie8'
         }))
@@ -24,7 +38,9 @@ gulp.task('less', function () {
 gulp.task('build', function (callback) {
     $.sequence(
         'less',
-        'buildResources'
+        'copyStatics',
+        'buildResources',
+        'moveImages'
     )(callback);
 });
 
